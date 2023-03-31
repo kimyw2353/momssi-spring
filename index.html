@@ -9,14 +9,30 @@
 </head>
 <body>
     <div id="app">
-        {{ name }}님 안녕하세요.
+        {{ otherMethod() }}
     </div>
     <script>
+        /**
+         * data는 계층으로도 표현할 수 있다. 계층은 .으로 표현한다.
+         * function은 생략 가능하다.
+         * 인자와 매개변수를 사용할 수 있다.
+         */
         new Vue({
             el: '#app',
             data: {
-                name: '야엘'
+                person: {
+                    name: '야엘',
+                    age: 24,
+                }
             },
+	        methods: {
+                nextYear(greeting) {
+                    return greeting + '!! ' + this.person.name + '님은 내년에 ' + (this.person.age + 1) + '세 입니다.';
+                },
+		        otherMethod() {
+                    return this.nextYear('반갑습니다');
+		        }
+	        }
         })
     </script>
 </body>
