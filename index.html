@@ -9,9 +9,16 @@
 </head>
 <body>
     <div id="app">
-        {{ otherMethod() }} <br>
-	    <input v-bind:type="inputType" :value="inputData"> <br>
-	    <a :href="getGithubLink('kimyw2353')" target="_blank">{{person.name}}'s Github</a>
+<!--        {{ otherMethod() }} <br>-->
+<!--	    <input v-bind:type="inputType" :value="inputData"> <br>-->
+<!--	    <a :href="getGithubLink('kimyw2353')" target="_blank">{{person.name}}'s Github</a><br>-->
+	    {{ year }} <br>
+	    <button v-on:click="plus">Add Year +</button>
+	    <button v-on:click="minus">Minus Year -</button><br>
+	    <form v-on:submit.prevent="submit">
+		    <input type="text">
+		    <button type="submit">Submit.</button>
+	    </form>
     </div>
     <script>
         /**
@@ -26,6 +33,7 @@
         new Vue({
             el: '#app',
             data: {
+                year: 2023,
                 person: {
                     name: '야엘',
                     age: 24,
@@ -35,6 +43,19 @@
 	            link: 'https://github.com/',
             },
 	        methods: {
+                submit() {
+                    alert('submitted');
+                    console.log('Form Submit Hello!');
+                },
+                plus(){
+                    this.year++;
+                },
+		        minus() {
+                    this.year--;
+		        },
+                clickButton() {
+					alert('Hello Yael.')
+                },
                 getGithubLink(userName) {
                   return this.link + userName;
                 },
