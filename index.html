@@ -10,7 +10,7 @@
 <body>
     <div id="app">
 	    <form v-on:submit.prevent="submit">
-		    <input type="text" :value="text" @keyup="updateText"><br>
+		    <input type="text" v-model="text"><br>
 		    {{ text }} <br>
 		    <button type="submit">Submit.</button>
 	    </form>
@@ -26,10 +26,10 @@
                     alert('submitted');
                     console.log('Form Submit Hello!');
                 },
-		        updateText(event) {
-                    // console.log(event);
-					this.text = event.target.value;
-		        }
+		        // updateText(event) {
+                //     // console.log(event);
+				// 	this.text = event.target.value;
+		        // }
 	        }
         })
     </script>
