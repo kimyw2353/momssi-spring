@@ -9,13 +9,19 @@
 </head>
 <body>
     <div id="app">
-        {{ otherMethod() }}
+        {{ otherMethod() }} <br>
+	    <input v-bind:type="inputType" :value="inputData"> <br>
+	    <a :href="getGithubLink('kimyw2353')" target="_blank">{{person.name}}'s Github</a>
     </div>
     <script>
         /**
          * data는 계층으로도 표현할 수 있다. 계층은 .으로 표현한다.
          * function은 생략 가능하다.
          * 인자와 매개변수를 사용할 수 있다.
+         *
+         * v-bind:value 를 사용하여 data에 정의된 속성을 사용할 수 있다.
+         * v-bind를 :로 생략하여 사용할 수 있다.
+         * 바인딩은 string 뿐만 아니라 함수도 적용 가능하다.
          */
         new Vue({
             el: '#app',
@@ -23,9 +29,15 @@
                 person: {
                     name: '야엘',
                     age: 24,
-                }
+                },
+	            inputData: '12345',
+	            inputType: 'number',
+	            link: 'https://github.com/',
             },
 	        methods: {
+                getGithubLink(userName) {
+                  return this.link + userName;
+                },
                 nextYear(greeting) {
                     return greeting + '!! ' + this.person.name + '님은 내년에 ' + (this.person.age + 1) + '세 입니다.';
                 },
